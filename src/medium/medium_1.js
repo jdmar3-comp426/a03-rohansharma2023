@@ -29,13 +29,17 @@ export function getSum(array) {
  */
 export function getMedian(array) {
 
-    array.sort();
+    function compare(a,b){  // We need a compare function so that we sort our array by value and not string. 
+        return a - b;
+    }
+
+    array.sort(compare);
 
     if(array.length % 2 == 0){
         return (array[(array.length/2) - 1] + array[array.length/2]) / 2.0;
     }
     else{
-       return array[Math.round((array.length/2) - 1)];
+       return array[Math.round(array.length/2) - 1];
     }
 }
 
