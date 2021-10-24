@@ -16,6 +16,13 @@
  */
 export const repeat = (fn, n, ...params) => {
 
+      let x = [];
+        for(let i = 0; i < n; i++){
+
+            x[i] = fn(...params);
+            }
+
+    return x;
 };
 
 
