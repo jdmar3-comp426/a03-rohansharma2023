@@ -116,5 +116,12 @@ export function removeKeyNonDestructive(object, key) {
  * @return {*} The object with its keys removed.
  */
 export function removeKeys(object, keyList) {
+   let new_object = Object.assign({}, object);
+
+   keyList.forEach(element =>{
+      delete new_object[element]
+   })
+
+   return new_object;
 
 }
