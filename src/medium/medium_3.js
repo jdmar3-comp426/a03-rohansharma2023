@@ -58,9 +58,7 @@ export function searchMpg(car_data, minCity, minHighway) { // This definetly wor
 }
 
 
-function compare_substring (a, b){
-    return b.id.indexOf(se) - a.highway_mpg;
-}
+
 
 /**
  * Find all cars where 'id' contains the search term below.
@@ -84,6 +82,10 @@ export function searchName(car_data, searchTerm) {
     return array;
 }
 
+function compare_year (a, b){
+    return b.year - a.year;
+}
+
 
 /**
  * Find all cars made in the years asked for.
@@ -92,7 +94,26 @@ export function searchName(car_data, searchTerm) {
  * @param car_data
  * @param {number[]} years - array of years to be included in the results e.g. [2010, 2012]
  * @returns {[]} an array of car objects
+ * 
  */
+
+
 export function searchByYear(car_data, years) {
+
+    function yearcheck(car){
+        if(years.includes(car.year)){
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+    let array = car_data.filter(yearcheck)
+
+    array.sort(compare_year)
+
+    return array;
 
 }
