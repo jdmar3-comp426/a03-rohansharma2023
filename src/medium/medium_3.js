@@ -58,6 +58,9 @@ export function searchMpg(car_data, minCity, minHighway) { // This definetly wor
 }
 
 
+function compare_substring (a, b){
+    return b.id.indexOf(se) - a.highway_mpg;
+}
 
 /**
  * Find all cars where 'id' contains the search term below.
@@ -69,6 +72,16 @@ export function searchMpg(car_data, minCity, minHighway) { // This definetly wor
  */
 export function searchName(car_data, searchTerm) {
 
+    function compare_substring (a, b){
+        return a.id.toLowerCase().indexOf(searchTerm.toLowerCase()) - b.id.indexOf(searchTerm.toLowerCase());
+    }
+    
+
+    let array = car_data.filter(car => car.id.toLowerCase().includes(searchTerm.toLowerCase()))
+
+    array.sort(compare_substring)
+
+    return array;
 }
 
 
