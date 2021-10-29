@@ -18,15 +18,19 @@ queries.
  *
  */
 
-function compare (a, b){
-    return a.horsepower - b.horsepower;
+function compare_horsepower (a, b){
+    return b.horsepower - a.horsepower;
 }
 
-export function searchHighPower(car_data, minHorsepower, minTorque) { // We will Map, Filter, and then Sort !!!
+function compare_mpg (a, b){
+    return b.highway_mpg - a.highway_mpg;
+}
+
+export function searchHighPower(car_data, minHorsepower, minTorque) { // We will Filter, and then Sort !!!
         
         let hp_array = car_data.filter(car => car.horsepower >= minHorsepower && car.torque >= minTorque)
 
-        hp_array.sort(compare)
+        hp_array.sort(compare_horsepower)
 
         return hp_array;
 
@@ -43,9 +47,16 @@ export function searchHighPower(car_data, minHorsepower, minTorque) { // We will
  * sorted by highway_mpg in descending order
  *
  */
-export function searchMpg(car_data, minCity, minHighway) {
+export function searchMpg(car_data, minCity, minHighway) { // This definetly works!!! 
+
+    let hp_array = car_data.filter(car => car.city_mpg >= minCity && car.highway_mpg >= minHighway)
+
+        hp_array.sort(compare_mpg)
+
+        return hp_array;
 
 }
+
 
 
 /**
