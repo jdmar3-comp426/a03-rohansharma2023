@@ -32,7 +32,7 @@ export const repeat = (fn, n, ...params) => {
  */
 export const repeatDemo = () => {
   function print(){
-    console.log("Hello, World!")
+    console.log("Hello, world!")
   }
 
  repeat(print, 10, []);
