@@ -212,5 +212,5 @@ export const anEvenIsOdd = (arr) => {
 export const hasExactly = (arr, test, n) => {
     let a = filter(arr, test);
 
-    return a[pass].length === n;
+    return a['pass'].length === n;
 };
