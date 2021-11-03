@@ -53,6 +53,12 @@ export const repeatDemo = () => {
  */
 export const multiplyBy = (num1) => {
 
+  function x(num2){
+    return num1 * num2;
+  }
+
+  return x;
+
 };
 
 
