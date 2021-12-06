@@ -8,7 +8,13 @@ import {variance} from "./data/stats_helpers.js";
  * prototype functions. Very useful
  */
 export function getSum(array) {
+    let sum = 0;
 
+    for(let i = 0; i < array.length; i++){
+        sum += array[i];
+    }
+
+    return sum;
 }
 
 
@@ -23,8 +29,20 @@ export function getSum(array) {
  */
 export function getMedian(array) {
 
-}
+    function compare(a,b){  // We need a compare function so that we sort our array by value and not string. 
+        return a - b;
+    }
 
+    array.sort(compare);
+
+    if(array.length % 2 == 0){
+        return (array[(array.length/2) - 1] + array[array.length/2]) / 2.0;
+    }
+    else{
+       return array[Math.round(array.length/2) - 1];
+    }
+}
+//xm
 /**
  * Calculates statistics (see below) on an array of numbers.
  * Look at the stats_helper.js file. It does variance which is used to calculate std deviation.
@@ -43,8 +61,21 @@ export function getMedian(array) {
   variance: 2.6666666666666665,
   standard_deviation: 1.632993161855452
  }
- */
+ */ 
 export function getStatistics(array) {
+
+   
+    
+    return {length: array.length,
+        sum: getSum(array),
+        mean: getSum(array)/array.length,
+        median: getMedian(array),
+        min: Math.min(... array),
+        max: Math.max(... array), 
+        variance: variance(array, (getSum(array)/array.length)), 
+        standard_deviation: Math.sqrt(variance(array,getSum(array)/array.length))
+    }
+
 
 }
 

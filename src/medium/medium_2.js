@@ -19,10 +19,26 @@ see under the methods section
  *
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
+
+
+ const num_hybrids = mpg_data.map(cars => cars.hybrid).filter(boolean => boolean == true).length
+
+ let citympg_array = mpg_data.map(car => car.city_mpg)
+
+ let hwympg_array = mpg_data.map(car => car.highway_mpg)
+
+
+ const city_average = citympg_array.reduce((x,y) => x+y, 0) / mpg_data.length; 
+
+ const hwy_average = hwympg_array.reduce((x,y) => x+y, 0) /  mpg_data.length; 
+
+
+
 export const allCarStats = {
-    avgMpg: undefined,
-    allYearStats: undefined,
-    ratioHybrids: undefined,
+
+    avgMpg: {city: city_average, highway: hwy_average} ,
+    allYearStats: getStatistics(mpg_data.map(car => car.year)),
+    ratioHybrids: num_hybrids/mpg_data.length,
 };
 
 

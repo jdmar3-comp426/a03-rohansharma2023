@@ -17,7 +17,22 @@ queries.
  * sorted by horsepower in descending order.
  *
  */
-export function searchHighPower(car_data, minHorsepower, minTorque) {
+
+function compare_horsepower (a, b){
+    return b.horsepower - a.horsepower;
+}
+
+function compare_mpg (a, b){
+    return b.highway_mpg - a.highway_mpg;
+}
+
+export function searchHighPower(car_data, minHorsepower, minTorque) { // We will Filter, and then Sort !!!
+        
+        let hp_array = car_data.filter(car => car.horsepower >= minHorsepower && car.torque >= minTorque)
+
+        hp_array.sort(compare_horsepower)
+
+        return hp_array;
 
 }
 
@@ -32,9 +47,17 @@ export function searchHighPower(car_data, minHorsepower, minTorque) {
  * sorted by highway_mpg in descending order
  *
  */
-export function searchMpg(car_data, minCity, minHighway) {
+export function searchMpg(car_data, minCity, minHighway) { // This definetly works!!! 
+
+    let hp_array = car_data.filter(car => car.city_mpg >= minCity && car.highway_mpg >= minHighway)
+
+        hp_array.sort(compare_mpg)
+
+        return hp_array;
 
 }
+
+
 
 
 /**
@@ -47,6 +70,20 @@ export function searchMpg(car_data, minCity, minHighway) {
  */
 export function searchName(car_data, searchTerm) {
 
+    function compare_substring (a, b){
+        return a.id.toLowerCase().indexOf(searchTerm.toLowerCase()) - b.id.indexOf(searchTerm.toLowerCase());
+    }
+    
+
+    let array = car_data.filter(car => car.id.toLowerCase().includes(searchTerm.toLowerCase()))
+
+    array.sort(compare_substring)
+
+    return array;
+}
+
+function compare_year (a, b){
+    return b.year - a.year;
 }
 
 
@@ -57,7 +94,26 @@ export function searchName(car_data, searchTerm) {
  * @param car_data
  * @param {number[]} years - array of years to be included in the results e.g. [2010, 2012]
  * @returns {[]} an array of car objects
+ * 
  */
+
+
 export function searchByYear(car_data, years) {
+
+    function yearcheck(car){
+        if(years.includes(car.year)){
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+    let array = car_data.filter(yearcheck)
+
+    array.sort(compare_year)
+
+    return array;
 
 }
